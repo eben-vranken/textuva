@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                     <Link
                         key={link.href}
                         href={link.href}
-                        className={`${isActive(link.href) ? 'border-b border-b-primary' : 'opacity-75'}`}
+                        className={`${isActive(link.href) ? 'border-b border-b-primary pt-[1px]' : 'opacity-75'}`}
                     >
                         {link.label}
                     </Link>
