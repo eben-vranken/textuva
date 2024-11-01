@@ -33,8 +33,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
       >
         <Navbar />
-
-        {children}
+        <section className="pt-[72px] px-2">
+          {children}
+        </section>
       </body>
     </html>
   );

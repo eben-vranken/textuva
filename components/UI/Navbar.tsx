@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = () => {
     const isActive = (href: string) => pathname === href;
 
     return (
-        <nav className="h-16 px-2 flex justify-between items-center">
+        <nav className="w-full h-16 px-2 flex justify-between items-center fixed bg-background border-b border-b-black/20 dark:border-b-white/20">
             {/* Brand */}
             <Link href="/" className="font-semibold text-lg flex items-center gap-x-1">
                 <Bookmarks size={25} weight="bold" className="text-primary" />

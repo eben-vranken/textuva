@@ -1,7 +1,9 @@
 export default function Home() {
   return (
-    <section className="w-full h-full flex items-center justify-center">
-
+    <section>
+      <h1 className="font-medium text-lg">
+        Homepage
+      </h1>
     </section>
   );
 }
