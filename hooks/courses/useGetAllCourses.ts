@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { readDir, mkdir, exists, BaseDirectory } from '@tauri-apps/plugin-fs';
 
 const useGetAllcourses = () => {
-    const [courses, setCourses] = useState<any[]>([])
+    const [courses, setCourses] = useState<any>()
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -15,7 +15,11 @@ const useGetAllcourses = () => {
                 }
 
                 const courses = await readDir('courses', { baseDir: BaseDirectory.AppLocalData })
-                setCourses(courses);
+
+                if (courses) {
+                    setCourses(courses);
+                }
+
             } catch (err) {
                 const coursesDirExists = await exists('courses', { baseDir: BaseDirectory.AppLocalData })
 
@@ -29,6 +33,7 @@ const useGetAllcourses = () => {
 
         fetchCourses();
     }, [])
+
 
     return courses
 };
