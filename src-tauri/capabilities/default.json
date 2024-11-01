@@ -7,6 +7,8 @@
   ],
   "permissions": [
     "core:default",
-    "fs:default"
+    "fs:create-app-specific-dirs",
+    "fs:default",
+    "fs:allow-app-write"
   ]
 }

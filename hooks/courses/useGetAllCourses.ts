@@ -1,38 +1,36 @@
 import { useEffect, useState } from 'react';
-import { readDir, BaseDirectory, DirEntry } from '@tauri-apps/plugin-fs';
-
-interface DirectoryEntry extends DirEntry {
-    children: DirEntry[];
-}
-
+import { readDir, mkdir, exists, BaseDirectory } from '@tauri-apps/plugin-fs';
 
 const useGetAllcourses = () => {
-    const [folders, setFolders] = useState<string[]>([]);
-    const [error, setError] = useState<string | null>(null);
+    const [courses, setCourses] = useState<any[]>([])
 
     useEffect(() => {
-        const fetchFolders = async () => {
+        const fetchCourses = async () => {
             try {
-                // Read the directory contents
-                const entries: DirEntry[] = await readDir('courses', {
-                    baseDir: BaseDirectory.Home,
-                });
+                const coursesDirExists = await exists('courses', { baseDir: BaseDirectory.AppLocalData })
 
-                // Filter for directories and get their names
-                const folderNames = entries
-                    .filter((entry): entry is DirectoryEntry => 'children' in entry)
-                    .map(entry => entry.name);
+                // If courses folder is not made, create one.
+                if (!coursesDirExists) {
+                    await mkdir('courses', { baseDir: BaseDirectory.AppLocalData })
+                }
 
-                setFolders(folderNames);
+                const courses = await readDir('courses', { baseDir: BaseDirectory.AppLocalData })
+                setCourses(courses);
             } catch (err) {
-                setError(`Failed to read folders: ${err}`);
+                const coursesDirExists = await exists('courses', { baseDir: BaseDirectory.AppLocalData })
+
+                if (!coursesDirExists) {
+                    await mkdir('courses', { baseDir: BaseDirectory.AppLocalData })
+                }
+
+                console.error(err)
             }
-        };
+        }
 
-        fetchFolders();
-    }, []);
+        fetchCourses();
+    }, [])
 
-    return { folders, error };
+    return courses
 };
 
 export default useGetAllcourses;

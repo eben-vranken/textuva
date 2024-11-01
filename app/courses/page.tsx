@@ -2,15 +2,22 @@
 import useGetAllcourses from "@/hooks/courses/useGetAllCourses";
 
 export default function Courses() {
-  const { folders, error } = useGetAllcourses();
+  const courses = useGetAllcourses();
 
-  console.log(folders, error)
+  console.log(courses)
 
   return (
     <section>
       <h1 className="font-medium text-lg">
         Courses
       </h1>
+
+      {
+        courses.length > 0 ?
+          <section></section>
+          :
+          <span>No courses yet!</span>
+      }
     </section>
   );
 }
