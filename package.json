@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
+    "@tauri-apps/plugin-fs": "^2.0.1",
     "next": "15.0.2",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.0.4",

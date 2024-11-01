@@ -5,9 +5,11 @@ import React from "react";
 import { usePathname } from "next/navigation";
 
 // Icons
-import { Bookmarks, Gear, Sun } from "@phosphor-icons/react";
+import { Gear, GraduationCap } from "@phosphor-icons/react";
 
-type NavbarProps = {}
+type NavbarProps = {
+    page: string
+}
 
 const Navbar: React.FC<NavbarProps> = () => {
     const pathname = usePathname();
@@ -26,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         <nav className="w-full h-16 px-2 flex justify-between items-center fixed bg-background border-b border-b-black/20 dark:border-b-white/20">
             {/* Brand */}
             <Link href="/" className="font-semibold text-lg flex items-center gap-x-1">
-                <Bookmarks size={25} weight="bold" className="text-primary" />
+                <GraduationCap size={25} weight="bold" className="text-primary" />
                 <span>Textuva</span>
             </Link>
 
